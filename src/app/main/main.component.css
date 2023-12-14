@@ -19,3 +19,35 @@ th {
 input {
   margin-left: 5px;
 }
+
+.video-player {
+    margin-top: 20px;
+}
+
+video {
+    width: 100%;
+    max-width: 600px;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Style for the PDF viewer */
+.pdf-container {
+  width: 100%;
+  height: 600px;
+}
+
+/* Style for the audio player */
+.audio-player {
+  width: 100%;
+}
+
+/* Style for the video player */
+.video-player {
+  width: 100%;
+  max-width: 800px;
+  /* Set a maximum width for better readability */
+}

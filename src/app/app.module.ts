@@ -58,7 +58,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 // import { PdfViewerModule } from 'ngx-extended-pdf-viewer';
 
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 
@@ -113,7 +113,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    PdfViewerModule
+    // PdfViewerModule
   
     
 

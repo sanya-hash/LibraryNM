@@ -14,9 +14,13 @@ export class MainService {
   getSubjects() {
     return this.http.get(`${this.apiUrl}/subjects`);
   }
-  saveAll(formData: FormData){
-    
-    return this.http.post(`${this.apiUrl}/data-items/upload`,formData);
-  }
+  saveAll(formData: FormData) {
 
+    return this.http.post(`${this.apiUrl}/data-items/upload`, formData);
+  }
+  getFileData(dataItemId: any){
+   
+    return this.http.get(`${this.apiUrl}/data-items/getFileData/${dataItemId}`, { responseType: 'arraybuffer' })
+
+  }
 }

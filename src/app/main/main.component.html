@@ -89,14 +89,31 @@
                 <td>
                    
                     <button (click)="moveDown(d)">Down</button>
-                    <button (click)="viewData(d)">View</button>
+                    <button (click)="viewData(d.dataItemId, d.dataType)">View</button>
                 </td>
 
             </tr>
         </tbody>
     </table>
 </div>
-<div >
- <!-- <ngx-extended-pdf-viewer [src]="filepath"></ngx-extended-pdf-viewer>  -->
-<pdf-viewer [src]="filepath" [render-text]="true" style="display: block;"></pdf-viewer>
+
+<!-- <div *ngIf="pdfUrl">
+
+<pdf-viewer [src]="pdfUrl" [render-text]="true" style="display: block;"></pdf-viewer>
+</div> -->
+<div *ngIf="pdfUrl" class="pdf-container">
+    <iframe [src]="pdfUrl" width="100%" height="600px" frameborder="0"></iframe>
+</div>
+
+<div class="audio-player">
+    <audio controls *ngIf="audioUrl">
+        <source [src]="audioUrl" type="audio/mp3" />
+        Your browser does not support the audio tag.
+    </audio>
+</div>
+<div class="video-player">
+    <video controls *ngIf="videoUrl" autoplay>
+        <source [src]="videoUrl" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
 </div>
