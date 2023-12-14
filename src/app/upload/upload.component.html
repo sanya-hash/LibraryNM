@@ -1,0 +1,134 @@
+<!-- <div class="content p-24">
+    <form (ngSubmit)="submit()">
+        <mat-card>
+            
+            <div>
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput [(ngModel)]="formData.title" name="title" required>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Type of Content</mat-label>
+                    <mat-select [(ngModel)]="formData.contentType" name="contentType" required>
+                        <mat-option *ngFor="let type of contentTypes" [value]="type">{{ type }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Program Course</mat-label>
+                    <mat-select [(ngModel)]="formData.programCourse" name="programCourse" required>
+                        <mat-option *ngFor="let course of programCourses" [value]="course">{{ course }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Branch</mat-label>
+                    <mat-select [(ngModel)]="formData.branch" name="branch" required>
+                        <mat-option *ngFor="let b of branches" [value]="b">{{ b }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Semester</mat-label>
+                    <mat-select [(ngModel)]="formData.semester" name="semester" required>
+                        <mat-option *ngFor="let s of semesters" [value]="s">{{ s }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>Subject</mat-label>
+                    <mat-select [(ngModel)]="formData.subject" name="subject" required>
+                        <mat-option *ngFor="let subj of subjects" [value]="subj">{{ subj }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div>
+                    <label for="fileInput">Upload File</label>
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)">
+                </div>
+
+
+
+
+
+
+                <mat-checkbox [(ngModel)]="formData.allowDownload" name="allowDownload">Allow Download</mat-checkbox>
+
+
+                <button mat-raised-button color="primary" type="submit">Upload Content</button>
+            </div>
+        </mat-card>
+    </form>
+</div> -->
+
+<!-- YourComponent.component.html -->
+
+<div class="content p-24" >
+    <form (ngSubmit)="submit()" autocomplete="off" enctype="multipart/form-data">
+        <div  >
+        <mat-card>
+            <mat-form-field>
+                <mat-label>Program Course</mat-label>
+                <mat-select [(ngModel)]="formData.programCourse" name="programCourse" required>
+                    <mat-option *ngFor="let course of programCourses" [value]="course">{{ course }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Branch</mat-label>
+                <mat-select [(ngModel)]="formData.branch" name="branch" required>
+                    <mat-option *ngFor="let b of branches" [value]="b">{{ b }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Semester</mat-label>
+                <mat-select [(ngModel)]="formData.semester" name="semester" required>
+                    <mat-option *ngFor="let s of semesters" [value]="s">{{ s }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Subject</mat-label>
+                <mat-select [(ngModel)]="formData.subject"  name="subject" required (ngModelChange)="getDataByTopics($event)">
+                    <mat-option *ngFor="let subj of subjects" [value]="subj.subjectId" >{{ subj.subjectTitle }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        <mat-form-field>
+            <mat-label>Topic</mat-label>
+            <mat-select [(ngModel)]="formData.topic" name="topic" required>
+                <mat-option *ngFor="let top of topics" [value]="top.topicId">{{ top.topicName }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput [(ngModel)]="formData.title" name="title" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Type of Content</mat-label>
+                    <mat-select [(ngModel)]="formData.contentType" name="contentType" required>
+                        <mat-option *ngFor="let type of contentTypes" [value]="type">{{ type }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div>
+                    <label for="fileInput">Upload File</label>
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept=".pdf, .doc, .docx">
+                </div>
+
+                <mat-checkbox (change)="updateAllowDownload($event.checked)" name="allowDownload">Allow Download</mat-checkbox>
+
+                <button mat-raised-button color="primary" type="submit">Upload Content</button>
+            <!-- </div> -->
+
+      </mat-card>
+        </div>
+    </form>
+</div>
+<!-- <div>Selected Subject: {{ formData.subject }}</div> -->

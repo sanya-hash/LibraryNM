@@ -1,0 +1,102 @@
+<!-- subject-list.component.html -->
+
+    <table>
+        <thead>
+            <tr>
+                <!-- <th>Subject ID</th> -->
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of subjects">
+                <!-- <td>{{ subject.subjectId }}</td> -->
+                <td>{{ subject.subjectCode }}</td>
+                <td>{{ subject.subjectTitle }}</td>
+                <td>
+                    <input type="checkbox" [checked]="selectedSubjects.includes(subject.subjectId)"
+                        (change)="toggleSubjectSelection(subject.subjectId)" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<!-- <button (click)="getSubjectData()">Submit</button> -->
+
+<!-- Display selected subjects -->
+
+<!-- <div *ngIf="isData">
+
+    <div *ngFor="let t of topics">
+         <div *ngFor="let data of t">
+            <p>{{data.topicName}}</p>
+         </div>
+    </div>
+
+</div> -->
+
+<!-- Topics Table -->
+<div *ngIf="isData">
+    <table>
+        <thead>
+            <tr>
+                <!-- <th>Topic ID</th> -->
+                <th>Topic Name</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let topic of topics" >
+            <tr *ngFor="let t of topic">
+               
+                <!-- <td>{{ t.topicId }}</td> -->
+                <td>{{ t.topicName }}</td>
+                <td>
+                    <input type="checkbox" [checked]="selectedTopics.includes(t.topicId)"
+                        (change)="toggleTopicSelection(t.topicId )"/>
+                </td>
+            
+            </tr>
+        </tbody>
+    </table>
+    <!-- <button (click)="getTopicsData()">Submit</button> -->
+    </div>
+
+<div *ngIf="isDataItem">
+    <table>
+        <thead>
+            <tr>
+                <!-- <th>Data Item ID</th> -->
+
+                <th>Data Item Name</th>
+                <th>Program</th>
+                <th>Branch</th>
+                <th>Semester</th>
+                <th>Subject</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let data of dataItems">
+            <tr *ngFor="let d of data">
+
+                <!-- <td>{{ d.dataItemId }}</td> -->
+                <td>{{ d.dataItemName }}</td>
+                <td>{{d.program}}</td>
+                <td>{{d.branch}}</td>
+                <td>{{d.semester}}</td>
+                <td>{{d.subject}}</td>
+                <td>{{d.dataType}}</td>
+                <td>
+                   
+                    <button (click)="moveDown(d)">Down</button>
+                    <button (click)="viewData(d)">View</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div >
+ <!-- <ngx-extended-pdf-viewer [src]="filepath"></ngx-extended-pdf-viewer>  -->
+<pdf-viewer [src]="filepath" [render-text]="true" style="display: block;"></pdf-viewer>
+</div>
