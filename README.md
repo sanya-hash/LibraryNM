@@ -118,3 +118,69 @@ public class VideoController {
 
 }
 
+<!-- <video width="640" height="360" controls>
+  <source [src]="videoUrl" type="video/mp4">
+  Your browser does not support the video tag.
+</video> -->
+
+<!-- video.component.html -->
+<video width="640" height="360" controls [src]="videoUrl">
+  Your browser does not support the video tag.
+</video>
+
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {VideoService} from '../video.service'
+
+@Component({
+  selector: 'app-video',
+  templateUrl: './video.component.html',
+  styleUrls: ['./video.component.css']
+})
+export class VideoComponent implements OnInit {
+ videoUrl: SafeResourceUrl;
+
+  constructor(private sanitizer: DomSanitizer, private videoService: VideoService) { }
+
+  ngOnInit(): void {
+    const videoName = 'test.mp4';  // Provide the desired video file name
+    this.loadVideo(videoName);
+  }
+
+  
+  loadVideo(videoName: any): void {
+    this.videoService.getVideoUrl(videoName).subscribe(
+      response => {
+        const blob = new Blob([response], { type: 'video/mp4' });
+        const url = URL.createObjectURL(blob);
+        this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+        console.log('Video URL:', this.videoUrl);
+      },
+      error => {
+        console.error('Error loading video:', error);
+      }
+    );
+  }
+ 
+}
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+@Injectable({
+  providedIn: 'root'
+})
+export class VideoService {
+  private baseUrl = 'http://localhost:8080/api/videos/';
+
+  constructor(private http: HttpClient) { }
+
+  getVideoUrl(videoName: any): Observable<ArrayBuffer>{
+    const url = `${this.baseUrl}${videoName}`;
+    return this.http.get(url, { responseType: 'arraybuffer' });
+  }
+  // getVideoUrl(videoName: string): Observable<Blob> {
+  //   const url = `${this.baseUrl}${videoName}`;
+  //   return this.http.get(url, { responseType: 'blob' });
+  // }
+}
